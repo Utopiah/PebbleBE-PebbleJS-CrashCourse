@@ -264,7 +264,7 @@ ws.onmessage = function (event) {
     // To verify that this is working, type something like PebbleBE on the server prompt
     console.log(event.data);
     // Or... something more fun!
-  if (event.data.toString()=="vibrate"){
+  if (event.data.toString()=="vibrate\n"){
     Vibe.vibrate('long');
     // Send a long vibration to the user wrist
   }
