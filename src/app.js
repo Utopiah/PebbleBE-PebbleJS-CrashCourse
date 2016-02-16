@@ -3,6 +3,10 @@ var shortest_demo_ever = true, demoing_ajax_call_test = false, demoing_ajax_webs
  * Welcome to Pebble.js modified for PebbleBE!
  *
  * This is where you write... where we understand an app.
+ * 
+ * Do not just watch, import and try LIVE! https://goo.gl/D8ZWUd
+ *   https://github.com/Utopiah/PebbleBE-PebbleJS-CrashCourse
+ *
  */
 
 var UI = require('ui');
@@ -223,20 +227,87 @@ function ajax_call_demo(){
   // Display the Card
 }
 
+
+
 /* *********************************************************** */
 /*                Going further : websockets                   */
 /* *********************************************************** */
 function demo_websocket(){
-  var card = new UI.Card();
-  card.title('Websocket demo');
-  card.subtitle('Let\'s connect!');
-  card.body('Oops I did not have the time to do that, sorry :)');
-  card.show();
+
+  var ws = new WebSocket('ws://fabien.benetou.fr:8889');
+// Replace with IP/hostname of computer running server
+
+var connected = false;
+console.log('Connecting...');
+
+ws.onopen = function () { 
+  console.log('inside the onconnect event');
+  ws.send(JSON.stringify('pebble connected'));
+  connected = true;
+};
+
+var Vibe = require('ui/vibe');
+
+var websocketCard = new UI.Card({
+  title: 'Connected (v2026)',
+  icon: 'images/menu_icon.png',
+  subtitle: 'Waiting for data',
+  body: 'Press up, middle or down buttons to send data.'
+});
+
+websocketCard.show();
+
+ws.onmessage = function (event) { 
+    websocketCard.body(event.data);
+    console.log(event.data);
+    // Send a long vibration to the user wrist
+  if (event.data.toString()=="vibrate"){
+    Vibe.vibrate('long');
+  }
+};
+
+websocketCard.on('click', function(e) {
+  websocketCard.subtitle('Button ' + e.button + ' pressed.');
+  if (connected){
+     ws.send(e.button + ' button pressed ');
+  }
+});
+
+var Accel = require('ui/accel');
+Accel.on('tap', function(e) {
+  console.log('Tap event on axis: ' + e.axis + ' and direction: ' + e.direction);
+  if (connected){
+     ws.send('Tap event on axis: ' + e.axis + ' and direction: ' + e.direction);
+  }
+});
+
+
 }
 
-/* Finished? Just for tonight.
 
-For more see the github : ... (to add)
 
-More questions? https://developer.pebble.com
-Still more? https://pebbledev.slack.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* *********************************************************** */
+/*                Finished? Just for tonight.                  */
+/* *********************************************************** */
+/*
+
+All the code available : https://goo.gl/D8ZWUd
+    https://github.com/Utopiah/PebbleBE-PebbleJS-CrashCourse
+More questions? Skim through https://developer.pebble.com
+Still more? Chat on https://pebbledev.slack.com
+Prefer local, check @PebbleBE on Twitter: https://twitter.com/Pebble_BE
+
+*/
