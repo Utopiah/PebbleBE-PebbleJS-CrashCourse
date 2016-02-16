@@ -232,6 +232,8 @@ function ajax_call_demo(){
 /* *********************************************************** */
 /*                Going further : websockets                   */
 /* *********************************************************** */
+// here we must start the websocket server on the right port and IP
+
 function demo_websocket(){
 
   var ws = new WebSocket('ws://fabien.benetou.fr:8889');
@@ -259,16 +261,19 @@ websocketCard.show();
 
 ws.onmessage = function (event) { 
     websocketCard.body(event.data);
+    // To verify that this is working, type something like PebbleBE on the server prompt
     console.log(event.data);
-    // Send a long vibration to the user wrist
+    // Or... something more fun!
   if (event.data.toString()=="vibrate"){
     Vibe.vibrate('long');
+    // Send a long vibration to the user wrist
   }
 };
 
 websocketCard.on('click', function(e) {
   websocketCard.subtitle('Button ' + e.button + ' pressed.');
   if (connected){
+    // so we can receive data but we can also... send data
      ws.send(e.button + ' button pressed ');
   }
 });
@@ -278,6 +283,7 @@ Accel.on('tap', function(e) {
   console.log('Tap event on axis: ' + e.axis + ' and direction: ' + e.direction);
   if (connected){
      ws.send('Tap event on axis: ' + e.axis + ' and direction: ' + e.direction);
+    // if fact we can send more than just button press.
   }
 });
 
