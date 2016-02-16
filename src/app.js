@@ -152,6 +152,16 @@ main.on('click', 'down', function(e) {
   card.show();
 });
 
+
+
+
+
+
+
+
+
+
+
 /* *********************************************************** */
 /*              Going further : Pebble functions               */
 /* *********************************************************** */
@@ -182,9 +192,18 @@ Note that it doesn't show the events one can subscribe to (on click, on tap, etc
 More details https://developer.pebble.com/docs/js/Pebble/
 */
 
+
+
+
+
+
+
+
 /* *********************************************************** */
 /*                Going further : AJAX call                    */
 /* *********************************************************** */
+// Basically relying on https://github.com/Utopiah/PebblePIM-Consult
+// Accessing very quickly the last editions of my wiki.
 
 var ajax = require('ajax');
 // related official tutorial https://developer.pebble.com/tutorials/pebble-js-tutorial/part1/
@@ -229,9 +248,19 @@ function ajax_call_demo(){
 
 
 
+
+
+
+
+
+
+
 /* *********************************************************** */
 /*                Going further : websockets                   */
 /* *********************************************************** */
+// Basically relying on https://github.com/Utopiah/PebblePIM
+// Sending memorable happy moment to my server for later reviewing.
+
 // here we must start the websocket server on the right port and IP
 
 function demo_websocket(){
