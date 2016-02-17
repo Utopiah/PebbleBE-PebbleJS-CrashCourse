@@ -17,8 +17,8 @@ main.show();
 if (shortest_demo_ever) return; // that's it, shortest app! We can have drinks and go home.
 
 /* Questions :
-- where did lines 7 to 10 happen?
-- where did line 11 happen?
+- where did lines 12 to 15 happen?
+- where did line 16 happen?
 */
 
 
@@ -343,6 +343,6 @@ All the code available : https://goo.gl/D8ZWUd
     https://github.com/Utopiah/PebbleBE-PebbleJS-CrashCourse
 More questions? Skim through https://developer.pebble.com
 Still more? Chat on https://pebbledev.slack.com
-Prefer local, check @PebbleBE on Twitter: https://twitter.com/Pebble_BE
+Prefer local, check @Pebble_BE on Twitter: https://twitter.com/Pebble_BE
 
 */
